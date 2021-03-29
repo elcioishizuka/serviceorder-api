@@ -2,6 +2,7 @@ package com.github.elcioishizuka.serviceorderapi.controller;
 
 import com.github.elcioishizuka.serviceorderapi.exception.CustomerNotFoundException;
 import com.github.elcioishizuka.serviceorderapi.model.Customer;
+import com.github.elcioishizuka.serviceorderapi.repository.CustomerRepository;
 import com.github.elcioishizuka.serviceorderapi.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -19,6 +20,9 @@ public class CustomerController {
 
     @Autowired
     CustomerService customerService;
+
+//    @Autowired
+//    CustomerRepository customerRepository;
 
     @GetMapping
     public List<Customer> listAllClients(){
@@ -58,6 +62,18 @@ public class CustomerController {
     public Customer modifyCustomer(@Valid @PathVariable Long id, @RequestBody Customer customer) throws CustomerNotFoundException {
         return customerService.modifyCustomer(id, customer);
     }
+
+//    @PutMapping("/{id}")
+//    public ResponseEntity<Customer> modifyCustomer(@Valid @PathVariable Long id, @RequestBody Customer customer){
+//        if(!customerRepository.existsById(id)){
+//            return ResponseEntity.notFound().build();
+//        }
+//        customer.setId(id);
+//        customer = customerRepository.save(customer);
+//
+//        return ResponseEntity.ok(customer);
+//    }
+
 
     @DeleteMapping("/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
