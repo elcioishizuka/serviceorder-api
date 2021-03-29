@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class CustomerService {
@@ -30,7 +29,38 @@ public class CustomerService {
         return foundCustomer;
     }
 
+//    // Using ResponseEntity
+//    public Customer listById(Long id) throws CustomerNotFoundException {
+//        ResponseEntity<Customer> foundCustomer = Optional
+//                .ofNullable(customerRepository.findById(id).orElse(null))
+//                .map(found -> ResponseEntity.ok(found))
+//                .orElseThrow(() -> new CustomerNotFoundException(id));
+//        return foundCustomer.getBody();
+//    }
+
     public List<Customer> listByNameContaining(String searchFor) {
         return customerRepository.findByNameContaining(searchFor);
     }
+
+    public Customer addCustomer(Customer customer) {
+        return customerRepository.save(customer);
+    }
+
+    public void deleteCustomer(Long id) throws CustomerNotFoundException {
+        verifyIfExists(id);
+        customerRepository.deleteById(id);
+    }
+
+    public Customer modifyCustomer(Long id, Customer customer) throws CustomerNotFoundException {
+        verifyIfExists(id);
+        customer.setId(id);
+        return customerRepository.save(customer);
+    }
+
+    private Customer verifyIfExists(Long id) throws CustomerNotFoundException {
+        return customerRepository.findById(id)
+                .orElseThrow(() -> new CustomerNotFoundException(id));
+    }
+
+
 }

@@ -1,6 +1,9 @@
 package com.github.elcioishizuka.serviceorderapi.model;
 
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Size;
 import java.util.Objects;
 
 @Entity
@@ -10,14 +13,26 @@ public class Customer {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank
+    @Size(max = 60)
     private String name;
+
+    @NotBlank
+    @Email
+    @Size(max = 255)
     private String email;
 
+    @NotBlank
+    @Size(max = 20)
     @Column(name="phone")
     private String telephone;
 
     public Long getId() {
         return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getName() {
