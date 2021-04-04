@@ -2,6 +2,7 @@ package com.github.elcioishizuka.serviceorderapi.exceptionHandler;
 
 import com.github.elcioishizuka.serviceorderapi.exception.CustomerEmailAlreadyRegisteredException;
 import com.github.elcioishizuka.serviceorderapi.exception.CustomerNotFoundException;
+import com.github.elcioishizuka.serviceorderapi.exception.ServiceOrderNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -44,6 +45,19 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
     @ExceptionHandler(CustomerNotFoundException.class)
     public ResponseEntity<Object> handleCustomerNotFoundException(CustomerNotFoundException ex,
                                                                                 WebRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        Issue issue = new Issue();
+        issue.setStatus(status.value());
+        issue.setTitle(ex.getMessage());
+        issue.setDateTime(LocalDateTime.now());
+
+        return handleExceptionInternal(ex, issue, new HttpHeaders(), status, request);
+    }
+
+    @ExceptionHandler(ServiceOrderNotFoundException.class)
+    public ResponseEntity<Object> handleServiceOrderNotFoundException(ServiceOrderNotFoundException ex,
+                                                                      WebRequest request){
         HttpStatus status = HttpStatus.BAD_REQUEST;
 
         Issue issue = new Issue();

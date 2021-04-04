@@ -1,6 +1,7 @@
 package com.github.elcioishizuka.serviceorderapi.service;
 
 import com.github.elcioishizuka.serviceorderapi.exception.CustomerNotFoundException;
+import com.github.elcioishizuka.serviceorderapi.exception.ServiceOrderNotFoundException;
 import com.github.elcioishizuka.serviceorderapi.model.ServiceOrder;
 import com.github.elcioishizuka.serviceorderapi.model.ServiceOrderStatus;
 import com.github.elcioishizuka.serviceorderapi.repository.ServiceOrderRepository;
@@ -32,4 +33,10 @@ public class ServiceOrderService {
         return serviceOrderRepository.save(serviceOrder);
     }
 
+    public ServiceOrder listById(Long serviceOrderId) throws ServiceOrderNotFoundException {
+        ServiceOrder foundServiceOrder = serviceOrderRepository.findById(serviceOrderId)
+                .orElseThrow(() -> new ServiceOrderNotFoundException(serviceOrderId));
+
+        return foundServiceOrder;
+    }
 }

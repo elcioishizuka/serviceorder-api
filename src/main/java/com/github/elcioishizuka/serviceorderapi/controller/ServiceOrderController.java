@@ -1,6 +1,7 @@
 package com.github.elcioishizuka.serviceorderapi.controller;
 
 import com.github.elcioishizuka.serviceorderapi.exception.CustomerNotFoundException;
+import com.github.elcioishizuka.serviceorderapi.exception.ServiceOrderNotFoundException;
 import com.github.elcioishizuka.serviceorderapi.model.ServiceOrder;
 import com.github.elcioishizuka.serviceorderapi.service.ServiceOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,11 @@ public class ServiceOrderController {
     @GetMapping
     public List<ServiceOrder> listAllServiceOrders(){
         return serviceOrderService.listAllServiceOrders();
+    }
+
+    @GetMapping("/{serviceOrderId}")
+    public ServiceOrder findById(@PathVariable Long serviceOrderId) throws ServiceOrderNotFoundException {
+        return serviceOrderService.listById(serviceOrderId);
     }
 
     @PostMapping
