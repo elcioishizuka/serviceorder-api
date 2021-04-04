@@ -8,7 +8,7 @@ import com.github.elcioishizuka.serviceorderapi.repository.ServiceOrderRepositor
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 @Service
@@ -28,7 +28,7 @@ public class ServiceOrderService {
         customerService.verifyIfExists(serviceOrder.getCustomer().getId());
 
         serviceOrder.setStatus(ServiceOrderStatus.OPEN);
-        serviceOrder.setOpenDate(LocalDateTime.now());
+        serviceOrder.setOpenDate(OffsetDateTime.now());
 
         return serviceOrderRepository.save(serviceOrder);
     }

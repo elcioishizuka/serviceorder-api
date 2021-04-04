@@ -18,6 +18,7 @@ import org.springframework.web.context.request.WebRequest;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -37,7 +38,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         Issue issue = new Issue();
         issue.setStatus(status.value());
         issue.setTitle(ex.getMessage());
-        issue.setDateTime(LocalDateTime.now());
+        issue.setDateTime(OffsetDateTime.now());
 
         return handleExceptionInternal(ex, issue, new HttpHeaders(), status, request);
     }
@@ -50,7 +51,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         Issue issue = new Issue();
         issue.setStatus(status.value());
         issue.setTitle(ex.getMessage());
-        issue.setDateTime(LocalDateTime.now());
+        issue.setDateTime(OffsetDateTime.now());
 
         return handleExceptionInternal(ex, issue, new HttpHeaders(), status, request);
     }
@@ -63,7 +64,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         Issue issue = new Issue();
         issue.setStatus(status.value());
         issue.setTitle(ex.getMessage());
-        issue.setDateTime(LocalDateTime.now());
+        issue.setDateTime(OffsetDateTime.now());
 
         return handleExceptionInternal(ex, issue, new HttpHeaders(), status, request);
     }
@@ -91,7 +92,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         issue.setStatus(status.value());
         issue.setTitle("One or more fields are invalid. " +
                 "Please correct the data and submit again");
-        issue.setDateTime(LocalDateTime.now());
+        issue.setDateTime(OffsetDateTime.now());
         issue.setProblematicFields(problematicFields);
 
         return super.handleExceptionInternal(ex, issue, headers, status, request);
