@@ -1,19 +1,15 @@
-package com.github.elcioishizuka.serviceorderapi.controller;
+package com.github.elcioishizuka.serviceorder.api.controller;
 
-import com.github.elcioishizuka.serviceorderapi.exception.CustomerEmailAlreadyRegisteredException;
-import com.github.elcioishizuka.serviceorderapi.exception.CustomerNotFoundException;
-import com.github.elcioishizuka.serviceorderapi.model.Customer;
-import com.github.elcioishizuka.serviceorderapi.repository.CustomerRepository;
-import com.github.elcioishizuka.serviceorderapi.service.CustomerService;
+import com.github.elcioishizuka.serviceorder.domain.model.Customer;
+import com.github.elcioishizuka.serviceorder.domain.exception.CustomerEmailAlreadyRegisteredException;
+import com.github.elcioishizuka.serviceorder.domain.exception.CustomerNotFoundException;
+import com.github.elcioishizuka.serviceorder.domain.service.CustomerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.swing.text.DefaultEditorKit;
 import javax.validation.Valid;
 import java.util.List;
-import java.util.Optional;
 
 @RestController
 @RequestMapping("/api/v1/clients")

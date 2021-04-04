@@ -1,4 +1,4 @@
-package com.github.elcioishizuka.serviceorderapi;
+package com.github.elcioishizuka.serviceorder;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

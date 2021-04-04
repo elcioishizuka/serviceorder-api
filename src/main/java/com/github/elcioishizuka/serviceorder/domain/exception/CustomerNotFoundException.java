@@ -1,4 +1,4 @@
-package com.github.elcioishizuka.serviceorderapi.exception;
+package com.github.elcioishizuka.serviceorder.domain.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

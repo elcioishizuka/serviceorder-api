@@ -1,9 +1,9 @@
-package com.github.elcioishizuka.serviceorderapi.controller;
+package com.github.elcioishizuka.serviceorder.api.controller;
 
-import com.github.elcioishizuka.serviceorderapi.exception.CustomerNotFoundException;
-import com.github.elcioishizuka.serviceorderapi.exception.ServiceOrderNotFoundException;
-import com.github.elcioishizuka.serviceorderapi.model.ServiceOrder;
-import com.github.elcioishizuka.serviceorderapi.service.ServiceOrderService;
+import com.github.elcioishizuka.serviceorder.domain.exception.CustomerNotFoundException;
+import com.github.elcioishizuka.serviceorder.domain.model.ServiceOrder;
+import com.github.elcioishizuka.serviceorder.domain.exception.ServiceOrderNotFoundException;
+import com.github.elcioishizuka.serviceorder.domain.service.ServiceOrderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;

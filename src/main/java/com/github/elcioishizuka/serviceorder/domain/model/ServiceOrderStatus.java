@@ -1,4 +1,4 @@
-package com.github.elcioishizuka.serviceorderapi.model;
+package com.github.elcioishizuka.serviceorder.domain.model;
 
 public enum ServiceOrderStatus {
 

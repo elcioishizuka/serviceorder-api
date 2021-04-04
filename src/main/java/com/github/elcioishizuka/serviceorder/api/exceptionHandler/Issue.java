@@ -1,4 +1,4 @@
-package com.github.elcioishizuka.serviceorderapi.exceptionHandler;
+package com.github.elcioishizuka.serviceorder.api.exceptionHandler;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
 

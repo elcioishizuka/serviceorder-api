@@ -1,6 +1,6 @@
-package com.github.elcioishizuka.serviceorderapi.model;
+package com.github.elcioishizuka.serviceorder.domain.model;
 
-import com.github.elcioishizuka.serviceorderapi.ValidationGroups;
+import com.github.elcioishizuka.serviceorder.domain.ValidationGroups;
 
 import javax.persistence.*;
 import javax.validation.constraints.Email;

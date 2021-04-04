@@ -1,7 +1,7 @@
-package com.github.elcioishizuka.serviceorderapi.model;
+package com.github.elcioishizuka.serviceorder.domain.model;
 
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.github.elcioishizuka.serviceorderapi.ValidationGroups;
+import com.github.elcioishizuka.serviceorder.domain.ValidationGroups;
 
 import javax.persistence.*;
 import javax.validation.Valid;
@@ -10,7 +10,6 @@ import javax.validation.constraints.NotNull;
 import javax.validation.groups.ConvertGroup;
 import javax.validation.groups.Default;
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.time.OffsetDateTime;
 import java.util.Objects;
 

@@ -1,4 +1,4 @@
-package com.github.elcioishizuka.serviceorderapi;
+package com.github.elcioishizuka.serviceorder.domain;
 
 public interface ValidationGroups {
 

@@ -1,9 +1,9 @@
-package com.github.elcioishizuka.serviceorderapi.service;
+package com.github.elcioishizuka.serviceorder.domain.service;
 
-import com.github.elcioishizuka.serviceorderapi.exception.CustomerEmailAlreadyRegisteredException;
-import com.github.elcioishizuka.serviceorderapi.exception.CustomerNotFoundException;
-import com.github.elcioishizuka.serviceorderapi.model.Customer;
-import com.github.elcioishizuka.serviceorderapi.repository.CustomerRepository;
+import com.github.elcioishizuka.serviceorder.domain.exception.CustomerEmailAlreadyRegisteredException;
+import com.github.elcioishizuka.serviceorder.domain.model.Customer;
+import com.github.elcioishizuka.serviceorder.domain.exception.CustomerNotFoundException;
+import com.github.elcioishizuka.serviceorder.domain.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

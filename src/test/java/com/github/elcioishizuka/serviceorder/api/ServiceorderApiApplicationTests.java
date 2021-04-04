@@ -1,4 +1,4 @@
-package com.github.elcioishizuka.serviceorderapi;
+package com.github.elcioishizuka.serviceorder.api;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
