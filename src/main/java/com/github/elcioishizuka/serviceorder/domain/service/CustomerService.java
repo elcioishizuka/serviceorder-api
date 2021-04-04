@@ -13,7 +13,7 @@ import java.util.List;
 public class CustomerService {
 
     @Autowired
-    CustomerRepository customerRepository;
+    private CustomerRepository customerRepository;
 
     public List<Customer> listAll() {
         return customerRepository.findAll();

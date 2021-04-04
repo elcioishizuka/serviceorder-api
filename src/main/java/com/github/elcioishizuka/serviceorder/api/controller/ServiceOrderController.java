@@ -1,5 +1,6 @@
 package com.github.elcioishizuka.serviceorder.api.controller;
 
+import com.github.elcioishizuka.serviceorder.api.dto.ServiceOrderDto;
 import com.github.elcioishizuka.serviceorder.domain.exception.CustomerNotFoundException;
 import com.github.elcioishizuka.serviceorder.domain.model.ServiceOrder;
 import com.github.elcioishizuka.serviceorder.domain.exception.ServiceOrderNotFoundException;
@@ -19,18 +20,20 @@ public class ServiceOrderController {
     ServiceOrderService serviceOrderService;
 
     @GetMapping
-    public List<ServiceOrder> listAllServiceOrders(){
+    public List<ServiceOrderDto> listAllServiceOrders(){
         return serviceOrderService.listAllServiceOrders();
     }
 
     @GetMapping("/{serviceOrderId}")
-    public ServiceOrder findById(@PathVariable Long serviceOrderId) throws ServiceOrderNotFoundException {
+    public ServiceOrderDto findById(@PathVariable Long serviceOrderId) throws ServiceOrderNotFoundException {
         return serviceOrderService.listById(serviceOrderId);
     }
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ServiceOrder createServiceOrder(@Valid @RequestBody ServiceOrder serviceOrder) throws CustomerNotFoundException {
+    public ServiceOrderDto createServiceOrder(@Valid @RequestBody ServiceOrder serviceOrder) throws CustomerNotFoundException {
         return serviceOrderService.createServiceOrder(serviceOrder);
     }
+
+    // TODO include DeleteMapping
 }
