@@ -62,7 +62,7 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    private Customer verifyIfExists(Long id) throws CustomerNotFoundException {
+    public Customer verifyIfExists(Long id) throws CustomerNotFoundException {
         return customerRepository.findById(id)
                 .orElseThrow(() -> new CustomerNotFoundException(id));
     }
