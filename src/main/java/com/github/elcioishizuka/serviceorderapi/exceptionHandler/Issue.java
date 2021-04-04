@@ -1,8 +1,11 @@
 package com.github.elcioishizuka.serviceorderapi.exceptionHandler;
 
+import com.fasterxml.jackson.annotation.JsonInclude;
+
 import java.time.LocalDateTime;
 import java.util.List;
 
+@JsonInclude(JsonInclude.Include.NON_NULL) // This annotation removes the null field from the response message.
 public class Issue {
 
     private Integer status;

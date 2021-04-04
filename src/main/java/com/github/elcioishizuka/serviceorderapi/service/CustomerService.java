@@ -1,5 +1,6 @@
 package com.github.elcioishizuka.serviceorderapi.service;
 
+import com.github.elcioishizuka.serviceorderapi.exception.CustomerEmailAlreadyRegisteredException;
 import com.github.elcioishizuka.serviceorderapi.exception.CustomerNotFoundException;
 import com.github.elcioishizuka.serviceorderapi.model.Customer;
 import com.github.elcioishizuka.serviceorderapi.repository.CustomerRepository;
@@ -42,7 +43,11 @@ public class CustomerService {
         return customerRepository.findByNameContaining(searchFor);
     }
 
-    public Customer addCustomer(Customer customer) {
+    public Customer addCustomer(Customer customer) throws CustomerEmailAlreadyRegisteredException {
+        Customer customerWithThisEmailRegistered = verifyIfEmailAlreadyRegistered(customer.getEmail());
+        if(customerWithThisEmailRegistered != null && !customerWithThisEmailRegistered.equals(customer)){
+            throw new CustomerEmailAlreadyRegisteredException(customer.getEmail());
+        }
         return customerRepository.save(customer);
     }
 
@@ -60,6 +65,10 @@ public class CustomerService {
     private Customer verifyIfExists(Long id) throws CustomerNotFoundException {
         return customerRepository.findById(id)
                 .orElseThrow(() -> new CustomerNotFoundException(id));
+    }
+
+    private Customer verifyIfEmailAlreadyRegistered(String email) {
+        return customerRepository.findByEmail(email);
     }
 
 

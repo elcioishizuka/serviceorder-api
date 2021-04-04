@@ -1,5 +1,6 @@
 package com.github.elcioishizuka.serviceorderapi.controller;
 
+import com.github.elcioishizuka.serviceorderapi.exception.CustomerEmailAlreadyRegisteredException;
 import com.github.elcioishizuka.serviceorderapi.exception.CustomerNotFoundException;
 import com.github.elcioishizuka.serviceorderapi.model.Customer;
 import com.github.elcioishizuka.serviceorderapi.repository.CustomerRepository;
@@ -54,7 +55,7 @@ public class CustomerController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public Customer addCustomer(@Valid @RequestBody Customer customer){
+    public Customer addCustomer(@Valid @RequestBody Customer customer) throws CustomerEmailAlreadyRegisteredException {
         return customerService.addCustomer(customer);
     }
 

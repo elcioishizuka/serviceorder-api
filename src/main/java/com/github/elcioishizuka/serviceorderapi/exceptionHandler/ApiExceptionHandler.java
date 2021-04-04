@@ -1,5 +1,7 @@
 package com.github.elcioishizuka.serviceorderapi.exceptionHandler;
 
+import com.github.elcioishizuka.serviceorderapi.exception.CustomerEmailAlreadyRegisteredException;
+import com.github.elcioishizuka.serviceorderapi.exception.CustomerNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -10,20 +12,47 @@ import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ControllerAdvice;
+import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.context.request.WebRequest;
-import org.springframework.web.servlet.LocaleContextResolver;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Locale;
 
 @ControllerAdvice
 public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
     @Autowired
     private MessageSource messageSource;
+
+    // This method will customize the ResponseStatusException eliminating the trace
+    // Included also the @JsonInclude annotation in the Issue class to not show the null fields.
+    @ExceptionHandler(CustomerEmailAlreadyRegisteredException.class)
+    public ResponseEntity<Object> handleCustomerEmailAlreadyRegisteredException(CustomerEmailAlreadyRegisteredException ex,
+                                                                                WebRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        Issue issue = new Issue();
+        issue.setStatus(status.value());
+        issue.setTitle(ex.getMessage());
+        issue.setDateTime(LocalDateTime.now());
+
+        return handleExceptionInternal(ex, issue, new HttpHeaders(), status, request);
+    }
+
+    @ExceptionHandler(CustomerNotFoundException.class)
+    public ResponseEntity<Object> handleCustomerNotFoundException(CustomerNotFoundException ex,
+                                                                                WebRequest request){
+        HttpStatus status = HttpStatus.BAD_REQUEST;
+
+        Issue issue = new Issue();
+        issue.setStatus(status.value());
+        issue.setTitle(ex.getMessage());
+        issue.setDateTime(LocalDateTime.now());
+
+        return handleExceptionInternal(ex, issue, new HttpHeaders(), status, request);
+    }
 
     @Override
     protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
@@ -54,8 +83,5 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
         return super.handleExceptionInternal(ex, issue, headers, status, request);
 
     }
-
-
-
 
 }
