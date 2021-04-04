@@ -1,6 +1,14 @@
 package com.github.elcioishizuka.serviceorderapi.model;
 
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.github.elcioishizuka.serviceorderapi.ValidationGroups;
+
 import javax.persistence.*;
+import javax.validation.Valid;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import javax.validation.groups.ConvertGroup;
+import javax.validation.groups.Default;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Objects;
@@ -12,20 +20,29 @@ public class ServiceOrder {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Valid
+    @ConvertGroup(from = Default.class, to = ValidationGroups.CustomerId.class)
+    @NotNull
     @ManyToOne
     @JoinColumn(name = "customer_id", referencedColumnName = "id")
     private Customer customer;
 
+    @NotBlank
     private String description;
+
+    @NotNull
     private BigDecimal price;
 
     @Enumerated(EnumType.STRING)
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private ServiceOrderStatus status;
 
     @Column(name="open_date")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime openDate;
 
     @Column(name="close_date")
+    @JsonProperty(access = JsonProperty.Access.READ_ONLY)
     private LocalDateTime closeDate;
 
     public Long getId() {

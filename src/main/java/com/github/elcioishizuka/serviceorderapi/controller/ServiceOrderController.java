@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 
 @RestController
@@ -23,7 +24,7 @@ public class ServiceOrderController {
 
     @PostMapping
     @ResponseStatus(HttpStatus.CREATED)
-    public ServiceOrder createServiceOrder(@RequestBody ServiceOrder serviceOrder) throws CustomerNotFoundException {
+    public ServiceOrder createServiceOrder(@Valid @RequestBody ServiceOrder serviceOrder) throws CustomerNotFoundException {
         return serviceOrderService.createServiceOrder(serviceOrder);
     }
 }
